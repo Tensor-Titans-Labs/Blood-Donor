@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Become a Donor — LifeLink</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body data-page="donor">
+  <header class="header">
+    <nav class="nav container">
+      <a href="index.html" class="logo">
+        <span class="logo-icon">🩸</span>
+        <span>LifeLink</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="find-donors.html" data-nav="find">Find Donors</a></li>
+        <li><a href="become-donor.html" data-nav="donor">Become Donor</a></li>
+        <li class="nav-auth" id="nav-guest">
+          <a href="login.html" class="btn btn-nav-signup">Login</a>
+        </li>
+        <li class="nav-auth nav-user" id="nav-user" hidden>
+          <span class="nav-greeting">Hi, <strong id="nav-username"></strong></span>
+          <button type="button" id="btn-logout" class="btn btn-nav-logout">Logout</button>
+        </li>
+      </ul>
+      <button class="nav-toggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+    </nav>
+  </header>
+
+  <main class="page-main">
+    <section class="page-hero page-hero-donor">
+      <div class="container">
+        <h1>Become a Blood Donor</h1>
+        <p>Register your details and help save lives in your community.</p>
+      </div>
+    </section>
+
+    <section class="section register-section">
+      <div class="container">
+        <div class="register-layout">
+          <div class="register-info">
+            <h2>Why register?</h2>
+            <ul class="benefits-list">
+              <li>Free to join LifeLink</li>
+              <li>Patients can find you by blood type &amp; city</li>
+              <li>Update availability anytime</li>
+              <li>Eligible if age 18–65 and healthy</li>
+            </ul>
+            <p class="disclaimer">Always donate through licensed blood banks. Minimum 56 days between whole blood donations.</p>
+            <a href="find-donors.html" class="btn btn-outline">Looking for donors instead?</a>
+          </div>
+
+          <div>
+            <p id="donor-welcome" class="login-banner" hidden></p>
+            <form id="donor-form" class="donor-form">
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="name">Full Name *</label>
+                  <input type="text" id="name" name="name" required placeholder="Your full name">
+                </div>
+                <div class="form-group">
+                  <label for="blood-group">Blood Group *</label>
+                  <select id="blood-group" name="bloodGroup" required>
+                    <option value="">Select</option>
+                    <option value="A+">A+</option>
+                    <option value="A-">A-</option>
+                    <option value="B+">B+</option>
+                    <option value="B-">B-</option>
+                    <option value="AB+">AB+</option>
+                    <option value="AB-">AB-</option>
+                    <option value="O+">O+</option>
+                    <option value="O-">O-</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="phone">Phone *</label>
+                  <input type="tel" id="phone" name="phone" required placeholder="+91 98765 43210">
+                </div>
+                <div class="form-group">
+                  <label for="age">Age *</label>
+                  <input type="number" id="age" name="age" min="18" max="65" required placeholder="18–65">
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="city">City *</label>
+                <input type="text" id="city" name="city" required placeholder="Your city">
+              </div>
+              <div class="form-group">
+                <label for="address">Area / Landmark</label>
+                <input type="text" id="address" name="address" placeholder="Helps patients locate you">
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="last-donation">Last Donation</label>
+                  <input type="date" id="last-donation" name="lastDonation">
+                </div>
+                <div class="form-group">
+                  <label for="availability">Availability *</label>
+                  <select id="availability" name="availability" required>
+                    <option value="available">Available now</option>
+                    <option value="week">Available this week</option>
+                    <option value="month">Available this month</option>
+                    <option value="unavailable">Currently unavailable</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group checkbox-group">
+                <label class="checkbox-label">
+                  <input type="checkbox" id="consent" required>
+                  <span>I confirm I am eligible to donate and consent to sharing my contact details.</span>
+                </label>
+              </div>
+              <button type="submit" class="btn btn-primary btn-block">Register as Donor</button>
+            </form>
+          </div>
+        </div>
+
+        <div id="registered-donors" class="my-donors" hidden>
+          <h3>Registrations on this device</h3>
+          <div id="my-donor-list" class="donor-cards"></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; 2026 LifeLink · <a href="find-donors.html">Find donors</a></p>
+    </div>
+  </footer>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <script src="auth.js"></script>
+  <script src="common.js"></script>
+  <script src="become-donor.js"></script>
+</body>
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Find Donors — LifeLink</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body data-page="find">
+  <header class="header">
+    <nav class="nav container">
+      <a href="index.html" class="logo">
+        <span class="logo-icon">🩸</span>
+        <span>LifeLink</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="find-donors.html" data-nav="find">Find Donors</a></li>
+        <li><a href="become-donor.html" data-nav="donor">Become Donor</a></li>
+        <li class="nav-auth" id="nav-guest">
+          <a href="login.html" class="btn btn-nav-signup">Login</a>
+        </li>
+        <li class="nav-auth nav-user" id="nav-user" hidden>
+          <span class="nav-greeting">Hi, <strong id="nav-username"></strong></span>
+          <button type="button" id="btn-logout" class="btn btn-nav-logout">Logout</button>
+        </li>
+      </ul>
+      <button class="nav-toggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+    </nav>
+  </header>
+
+  <main class="page-main">
+    <section class="page-hero">
+      <div class="container">
+        <h1>Find Blood Donors</h1>
+        <p id="find-donor-desc">Search by blood group and city — we recommend 24+ similar donors in your area.</p>
+      </div>
+    </section>
+
+    <section class="section find-section">
+      <div class="container">
+        <div id="login-prompt" class="login-banner">
+          <p><a href="login.html">Log in</a> or <a href="signup.html">sign up</a> to save your search history and get faster matches.</p>
+        </div>
+
+        <form id="search-form" class="search-form">
+          <div class="form-group">
+            <label for="search-blood">Blood Group *</label>
+            <select id="search-blood" required>
+              <option value="">Select blood group</option>
+              <option value="A+">A+</option>
+              <option value="A-">A-</option>
+              <option value="B+">B+</option>
+              <option value="B-">B-</option>
+              <option value="AB+">AB+</option>
+              <option value="AB-">AB-</option>
+              <option value="O+">O+</option>
+              <option value="O-">O-</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="search-city">City *</label>
+            <input type="text" id="search-city" required placeholder="e.g. Mumbai, Delhi, Bangalore" autocomplete="address-level2">
+          </div>
+          <button type="submit" class="btn btn-primary">Search &amp; Recommend Donors</button>
+        </form>
+
+        <div id="recommended-section" class="recommended-section" hidden>
+          <div class="recommended-header">
+            <h2>24+ Recommended Donors</h2>
+            <p id="recommended-desc"></p>
+          </div>
+          <div id="recommended-cards" class="donor-cards donor-cards-dense"></div>
+        </div>
+
+        <div id="registered-section" class="registered-section" hidden>
+          <h3>Community registrations</h3>
+          <p id="registered-count" class="results-count"></p>
+          <div id="registered-cards" class="donor-cards"></div>
+        </div>
+
+        <div id="no-results" class="empty-state" hidden>
+          <div class="empty-icon">🔍</div>
+          <h3>No donors found</h3>
+          <p>Enter a valid city and blood group to see recommendations.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; 2026 LifeLink · <a href="become-donor.html">Register as a donor</a></p>
+    </div>
+  </footer>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <script src="auth.js"></script>
+  <script src="common.js"></script>
+  <script src="donor-generator.js"></script>
+  <script src="find-donors.js"></script>
+</body>
+</html>

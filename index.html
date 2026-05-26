@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LifeLink — Blood Donor Network</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body data-page="home">
+  <header class="header">
+    <nav class="nav container">
+      <a href="index.html" class="logo">
+        <span class="logo-icon">🩸</span>
+        <span>LifeLink</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html" data-nav="home">Home</a></li>
+        <li><a href="find-donors.html" data-nav="find">Find Donors</a></li>
+        <li><a href="become-donor.html" data-nav="donor">Become Donor</a></li>
+        <li class="nav-auth" id="nav-guest">
+          <a href="login.html" class="btn btn-nav-signup">Login</a>
+        </li>
+        <li class="nav-auth nav-user" id="nav-user" hidden>
+          <span class="nav-greeting">Hi, <strong id="nav-username"></strong></span>
+          <button type="button" id="btn-logout" class="btn btn-nav-logout">Logout</button>
+        </li>
+      </ul>
+      <button class="nav-toggle" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+  </header>
+
+  <main>
+    <section id="home" class="hero">
+      <div class="hero-bg"></div>
+      <div class="container hero-content">
+        <p class="hero-tag">One donation can save up to 3 lives</p>
+        <h1>Connect donors with those who need blood</h1>
+        <p class="hero-desc">Search 24+ similar donors in your city, or register to help patients find you.</p>
+        <div class="hero-actions">
+          <a href="become-donor.html" class="btn btn-primary">Become a Donor</a>
+          <a href="find-donors.html" class="btn btn-outline">Find Donors</a>
+        </div>
+        <div class="hero-stats">
+          <div class="stat">
+            <strong id="stat-donors">0</strong>
+            <span>Registered donors</span>
+          </div>
+          <div class="stat">
+            <strong>24+</strong>
+            <span>Recommendations per search</span>
+          </div>
+          <div class="stat">
+            <strong>24/7</strong>
+            <span>Community support</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="section about-section">
+      <div class="container">
+        <h2>How it works</h2>
+        <div class="steps-grid">
+          <article class="step-card">
+            <span class="step-num">1</span>
+            <h3>Sign up</h3>
+            <p>Create an account as a donor or someone looking for donors.</p>
+          </article>
+          <article class="step-card">
+            <span class="step-num">2</span>
+            <h3>Search</h3>
+            <p>On the Find Donors page, enter blood type and city for 24+ localized matches.</p>
+          </article>
+          <article class="step-card">
+            <span class="step-num">3</span>
+            <h3>Connect</h3>
+            <p>Call donors directly — each listed in a different area of your city.</p>
+          </article>
+        </div>
+        <p class="disclaimer">Demo community tool. Always use licensed blood banks for donations.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; 2026 LifeLink Blood Donor Network. Save lives, donate blood.</p>
+    </div>
+  </footer>
+
+  <script src="auth.js"></script>
+  <script src="common.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', updateDonorCount);
+  </script>
+</body>
+</html>

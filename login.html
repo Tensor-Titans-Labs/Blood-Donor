@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login — LifeLink</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="auth-page">
+  <div class="auth-wrapper">
+    <a href="index.html" class="logo auth-logo">
+      <span class="logo-icon">🩸</span>
+      <span>LifeLink</span>
+    </a>
+
+    <div class="auth-card">
+      <h1>Welcome back</h1>
+      <p class="auth-subtitle">Choose how you want to use LifeLink, then log in.</p>
+
+      <form id="login-form" class="auth-form">
+        <div class="form-group">
+          <span class="field-label">Log in as</span>
+          <div class="role-toggle" role="radiogroup" aria-label="Login type">
+            <label class="role-option">
+              <input type="radio" name="login-role" value="seeker" checked>
+              <span class="role-option-card">
+                <span class="role-icon" aria-hidden="true">🔍</span>
+                <span class="role-title">Find Donors</span>
+                <span class="role-desc">Search & get recommendations</span>
+              </span>
+            </label>
+            <label class="role-option">
+              <input type="radio" name="login-role" value="donor">
+              <span class="role-option-card">
+                <span class="role-icon" aria-hidden="true">🩸</span>
+                <span class="role-title">Donor</span>
+                <span class="role-desc">Register & donate blood</span>
+              </span>
+            </label>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" required placeholder="you@example.com" autocomplete="email">
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" id="password" name="password" required placeholder="Your password" autocomplete="current-password" minlength="6">
+        </div>
+        <p id="login-error" class="form-error" hidden></p>
+        <button type="submit" class="btn btn-primary btn-block">Log In</button>
+      </form>
+
+      <p class="auth-footer">
+        Don't have an account? <a href="signup.html">Sign up</a>
+      </p>
+    </div>
+  </div>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="auth.js"></script>
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const roleFromUrl = params.get('role');
+    if (roleFromUrl === 'donor' || roleFromUrl === 'seeker') {
+      const radio = document.querySelector(`input[name="login-role"][value="${roleFromUrl}"]`);
+      if (radio) radio.checked = true;
+    }
+
+    if (Auth.isLoggedIn()) {
+      window.location.href = Auth.getHomeUrl();
+    }
+
+    document.getElementById('login-form').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const errorEl = document.getElementById('login-error');
+      errorEl.hidden = true;
+
+      const role = document.querySelector('input[name="login-role"]:checked')?.value || 'seeker';
+
+      const result = Auth.login(
+        document.getElementById('email').value,
+        document.getElementById('password').value,
+        role
+      );
+
+      if (!result.ok) {
+        errorEl.textContent = result.error;
+        errorEl.hidden = false;
+        return;
+      }
+
+      window.location.href = Auth.getHomeUrl(role);
+    });
+  </script>
+</body>
+</html>
